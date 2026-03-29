@@ -1,0 +1,12 @@
+# 환경변수 (비밀번호, API 키 등) 
+.env
+
+# 파이썬 캐시 파일
+__pycache__/
+*.pyc
+
+# 로컬 테스트 및 더미 파생 파일
+test_run.py
+test_res.json
+preview.html
+*.txt

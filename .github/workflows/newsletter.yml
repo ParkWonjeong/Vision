@@ -1,0 +1,36 @@
+name: Send Daily Economy Newsletter
+
+on:
+  schedule:
+    # KST 08:00 (UTC 23:00) 매일 실행
+    - cron: '0 23 * * *'
+  # 수동 실행 버튼을 GitHub 웹에서 누를 수 있게 허용
+  workflow_dispatch:
+
+jobs:
+  run-newsletter:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Run Newsletter Script
+      env:
+        # Repository Secrets에 저장된 변수들을 불러와 파이썬 코드가 읽도록 설정합니다.
+        GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+        EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+        RECEIVER_EMAIL: ${{ secrets.RECEIVER_EMAIL }}
+      run: |
+        python main.py

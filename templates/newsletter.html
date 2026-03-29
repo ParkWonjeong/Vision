@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>바건정 경제 리포트</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .header {
+            background-color: #0f172a;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            margin: 8px 0 0 0;
+            font-size: 15px;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        /* Market Overview Section */
+        .market-board {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px 24px 0 24px;
+            justify-content: space-between;
+            background-color: #fff;
+        }
+
+        .market-item {
+            width: 31%;
+            /* 3개씩 또는 2개씩 자유롭게 배치 */
+            margin-bottom: 20px;
+            padding: 16px;
+            border-radius: 8px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .market-name {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .market-price {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 4px;
+            color: #0f172a;
+        }
+
+        .market-change {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .change-up {
+            color: #dc2626;
+        }
+
+        /* 한국 주식 시장 기준 상승은 빨간색 */
+        .change-down {
+            color: #2563eb;
+        }
+
+        /* 하락은 파란색 */
+        .change-flat {
+            color: #64748b;
+        }
+
+        .commentary-box {
+            margin: 0 24px 24px 24px;
+            padding: 16px 20px;
+            background-color: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .commentary-box h3 {
+            margin: 0 0 10px 0;
+            font-size: 15px;
+            color: #1e40af;
+        }
+
+        .commentary-box ul {
+            margin: 0;
+            padding-left: 18px;
+            color: #334155;
+            font-size: 14px;
+        }
+
+        .commentary-box li {
+            margin-bottom: 6px;
+        }
+
+        /* News Section */
+        .section-title {
+            margin: 0 24px 16px 24px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            font-size: 20px;
+            font-weight: 800;
+            color: #0f172a;
+        }
+
+        .content {
+            padding: 0 24px 24px 24px;
+        }
+
+        .article {
+            margin-bottom: 28px;
+        }
+
+        .article-title {
+            margin: 0 0 4px 0;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .article-title a {
+            color: #1d4ed8;
+            text-decoration: none;
+        }
+
+        .article-title a:hover {
+            text-decoration: underline;
+        }
+
+        .title-original {
+            font-size: 13px;
+            color: #94a3b8;
+            margin: 0 0 12px 0;
+            font-style: italic;
+        }
+
+        .summary-list {
+            margin: 0 0 12px 0;
+            padding-left: 20px;
+            color: #475569;
+            font-size: 15px;
+        }
+
+        .summary-list li {
+            margin-bottom: 6px;
+        }
+
+        /* Study Lounge */
+        .study-lounge {
+            margin: 0 24px 30px 24px;
+            background-color: #fef2f2;
+            border: 1px solid #fee2e2;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .study-lounge h3 {
+            margin: 0 0 16px 0;
+            font-size: 18px;
+            color: #b91c1c;
+            text-align: center;
+        }
+
+        .study-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        .study-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .study-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+            background-color: #ef4444;
+            padding: 3px 8px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .study-tag.quant {
+            background-color: #8b5cf6;
+        }
+
+        .study-word {
+            font-weight: 800;
+            font-size: 16px;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+
+        .study-desc {
+            font-size: 14px;
+            color: #475569;
+            margin: 0;
+        }
+
+        .footer {
+            background-color: #f8fafc;
+            color: #94a3b8;
+            text-align: center;
+            padding: 24px;
+            font-size: 13px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* Mobile responsiveness */
+        @media only screen and (max-width: 600px) {
+            .market-item {
+                width: 48%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Vision Newsletter</h1>
+            <p>{{ today_date }} 글로벌 경제 뉴스레터</p>
+        </div>
+
+        <!-- Market Map & Overview -->
+        <h2 class="section-title" style="margin-top: 24px;">📊 Market Dashboard</h2>
+        <div class="market-board">
+            {% for idx in indices %}
+            <div class="market-item">
+                <div class="market-name">{{ idx.name }}</div>
+                <div class="market-price">{{ idx.price }}</div>
+                <div class="market-change change-{{ idx.status }}">
+                    {{ idx.symbol }} {{ idx.change }} ({{ idx.change_percent }})
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="commentary-box">
+            <h3>📈 오늘의 시장 인사이트</h3>
+            <ul>
+                {% for point in commentary %}
+                <li>{{ point }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- News Section -->
+        <h2 class="section-title">📰 Top Global News</h2>
+        <div class="content">
+            {% for article in articles %}
+            <div class="article">
+                <h2 class="article-title">
+                    <a href="{{ article.link }}" target="_blank">{{ article.title_ko }}</a>
+                </h2>
+                <div class="title-original">{{ article.title_en }}</div>
+
+                <ul class="summary-list">
+                    {% for point in article.summary_ko %}
+                    <li>{{ point }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Study Lounge Section -->
+        <div class="study-lounge">
+            <h3>🎓 Vision Study Lounge</h3>
+
+            <div class="study-card">
+                <div class="study-tag">경제 용어</div>
+                <div class="study-word">{{ study.economic_term_name }}</div>
+                <p class="study-desc">{{ study.economic_term_desc }}</p>
+            </div>
+
+            <div class="study-card">
+                <div class="study-tag quant">퀀트 투자</div>
+                <div class="study-word">{{ study.quant_concept_name }}</div>
+                <p class="study-desc">{{ study.quant_concept_desc }}</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>해당 뉴스레터는 박원정의 프로젝트 Vision에 의해 생성되었습니다.</p>
+            <p> </p>
+            <p>이 메일은 매일 아침 8시에 AI 시스템에 의해 자동 발송됩니다.</p>
+            <p>Powered by Vision & Gemini AI</p>
+
+        </div>
+    </div>
+</body>
+
+</html>
