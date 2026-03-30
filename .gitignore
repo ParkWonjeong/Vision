@@ -10,3 +10,4 @@ test_run.py
 test_res.json
 preview.html
 *.txt
+!requirements.txt
